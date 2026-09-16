@@ -17,7 +17,7 @@ body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .icon { width: 84px; height: 84px; border-radius: 22px; box-shadow: 0 12px 34px rgba(224,104,92,.35);
   animation: float 5s ease-in-out infinite; }
-.cover { max-width: 240px; width: 100%; border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,.5); }
+.cover { max-width: 240px; width: 100%; border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,.5); margin-bottom: 6px; }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 h1 { font-size: 22px; margin: 18px 0 6px; }
 .sub { color: var(--muted); font-size: 14px; margin: 0 0 26px; }
@@ -60,9 +60,14 @@ h1 { font-size: 22px; margin: 18px 0 6px; }
   document.getElementById("title").textContent = name || T["m.fallback"] || "Hanten";
   if (cover) {
     var art = document.getElementById("art");
+    art.referrerPolicy = "no-referrer";
+    art.onerror = function () {
+      art.onerror = null;
+      art.src = "/icon.png";
+      art.className = "icon";
+    };
     art.src = cover;
     art.className = "cover";
-    art.referrerPolicy = "no-referrer";
   }
   if (source) document.getElementById("source").textContent = (T["m.src"] || "Source:") + " " + source;
   document.getElementById("openApp").textContent = T["m.open"] || "Open";
