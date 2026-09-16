@@ -5,43 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hanten — читалка манги для Android</title>
 <meta name="description" content="Hanten — бесплатная читалка манги, манхвы и маньхуа для Android. Десятки источников, загрузки, похожая манга.">
+<link rel="icon" type="image/png" href="/icon.png">
 <style>
-:root { color-scheme: dark; --bg: #141118; --card: #1f1a24; --accent: #b388ff; --text: #ece6f0; --muted: #a89fb3; }
+:root {
+  color-scheme: dark;
+  --bg: #141824; --card: #20263c; --accent: #e0685c; --cream: #f2e3c9;
+  --text: #f0ebf5; --muted: #a7aec7;
+}
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
-.wrap { max-width: 860px; margin: 0 auto; padding: 48px 20px 64px; }
-.hero { text-align: center; padding: 40px 0 24px; }
-.hero h1 { font-size: 44px; margin: 0 0 8px; letter-spacing: 2px; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(600px 400px at 15% -5%, rgba(224,104,92,.14), transparent 60%),
+    radial-gradient(700px 500px at 90% 10%, rgba(120,130,255,.12), transparent 60%);
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 40px 20px 64px; position: relative; }
+nav { display: flex; align-items: center; gap: 12px; }
+nav img { width: 40px; height: 40px; border-radius: 12px; }
+nav b { letter-spacing: 3px; font-size: 15px; }
+nav .sp { flex: 1; }
+nav a { color: var(--muted); text-decoration: none; font-size: 14px; margin-left: 18px; }
+nav a:hover { color: var(--text); }
+.hero { text-align: center; padding: 56px 0 20px; }
+.hero img.icon {
+  width: 128px; height: 128px; border-radius: 30px;
+  box-shadow: 0 18px 50px rgba(224,104,92,.35);
+  animation: float 5s ease-in-out infinite;
+}
+@keyframes float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+.hero h1 { font-size: 46px; margin: 22px 0 8px; letter-spacing: 6px; }
+.hero h1 span { color: var(--accent); }
 .hero p { color: var(--muted); font-size: 18px; margin: 0 0 28px; }
-.btn { display: inline-block; background: var(--accent); color: #1a1025; font-weight: 700; padding: 14px 28px; border-radius: 12px; text-decoration: none; margin: 4px 6px; }
-.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 36px; }
-.card { background: var(--card); border-radius: 14px; padding: 18px; }
+.btn { display: inline-block; background: var(--accent); color: #221016; font-weight: 700; padding: 14px 30px; border-radius: 14px; text-decoration: none; margin: 4px 6px; transition: transform .18s ease, box-shadow .18s ease; }
+.btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 28px rgba(224,104,92,.45); }
+.btn.ghost { background: transparent; color: var(--cream); border: 1px solid #4a5478; box-shadow: none; }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
+.card { background: var(--card); border: 1px solid #2c3452; border-radius: 16px; padding: 20px; transition: transform .2s ease, border-color .2s ease; }
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
 .card h3 { margin: 0 0 8px; font-size: 17px; }
-.card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
-footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 48px; }
+.card h3 .dot { color: var(--accent); margin-right: 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.petal { position: fixed; top: -4vh; border-radius: 100% 4px 100% 4px; background: rgba(224,120,110,.7); pointer-events: none; z-index: 0;
+  left: var(--x); width: var(--s); height: var(--s);
+  animation: fall var(--t) linear infinite; animation-delay: var(--d); }
+@keyframes fall {
+  0% { transform: translateY(-4vh) rotate(0deg); opacity: 0; }
+  8% { opacity: .9; }
+  100% { transform: translateY(108vh) translateX(6vw) rotate(320deg); opacity: 0; }
+}
+footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 52px; }
 footer a { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .hero img.icon, .petal { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
 </style>
 </head>
 <body>
+<i class="petal" style="--x:6%;  --s:11px; --t:13s; --d:0s"></i>
+<i class="petal" style="--x:18%; --s:8px;  --t:11s; --d:2s"></i>
+<i class="petal" style="--x:32%; --s:13px; --t:15s; --d:5s"></i>
+<i class="petal" style="--x:47%; --s:9px;  --t:12s; --d:1s"></i>
+<i class="petal" style="--x:61%; --s:12px; --t:14s; --d:4s"></i>
+<i class="petal" style="--x:74%; --s:8px;  --t:10s; --d:3s"></i>
+<i class="petal" style="--x:86%; --s:11px; --t:13s; --d:6s"></i>
+<i class="petal" style="--x:95%; --s:9px;  --t:12s; --d:7s"></i>
 <div class="wrap">
-  <div class="hero">
+  <nav class="reveal">
+    <img src="/icon.png" alt="Hanten">
+    <b>HANTEN</b>
+    <span class="sp"></span>
+    <a href="/docs/">Документация</a>
+    <a href="https://github.com/DezFix/Hanten">GitHub</a>
+  </nav>
+  <div class="hero reveal">
+    <img class="icon" src="/icon.png" alt="Иконка Hanten">
     <h1>HANTEN</h1>
     <p>Бесплатная читалка манги, манхвы и маньхуа для Android</p>
     <a class="btn" href="https://github.com/DezFix/Hanten/releases/latest">Скачать APK</a>
     <a class="btn ghost" href="/docs/">Документация</a>
   </div>
   <div class="grid">
-    <div class="card"><h3>Десятки источников</h3><p>ReadManga, MintManga, Remanga, Manhwa и другие — на русском и английском.</p></div>
-    <div class="card"><h3>Похожая манга</h3><p>На странице тайтла — карусель похожих произведений по жанрам.</p></div>
-    <div class="card"><h3>Шаринг</h3><p>Делитесь ссылкой — она откроется сразу в приложении у получателя.</p></div>
-    <div class="card"><h3>Загрузки</h3><p>Сохраняйте главы для чтения офлайн.</p></div>
-    <div class="card"><h3>Без премиума</h3><p>Закрытые платные тайтлы скрываются из каталога автоматически.</p></div>
-    <div class="card"><h3>Открытый код</h3><p>Приложение и парсеры — open source, без рекламы.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Десятки источников</h3><p>ReadManga, MintManga, Remanga, Manhwa и другие — на русском и английском.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Похожая манга</h3><p>На странице тайтла — карусель похожих произведений по жанрам.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Шаринг</h3><p>Делитесь ссылкой — она откроется сразу в приложении у получателя.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Загрузки</h3><p>Сохраняйте главы для чтения офлайн.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Без премиума</h3><p>Закрытые платные тайтлы скрываются из каталога автоматически.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Открытый код</h3><p>Приложение и парсеры — open source, без рекламы.</p></div>
   </div>
-  <footer>
+  <footer class="reveal">
     <p><a href="https://github.com/DezFix/Hanten">Hanten на GitHub</a> · <a href="https://github.com/DezFix/hanten-parsers">Парсеры</a> · <a href="/docs/">Документация</a></p>
   </footer>
 </div>
+<script>
+(function () {
+  var els = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("visible"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el, i) {
+    el.style.transitionDelay = Math.min(i * 60, 360) + "ms";
+    io.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
