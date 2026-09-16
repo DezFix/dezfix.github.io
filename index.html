@@ -6,6 +6,7 @@
 <title>Hanten — читалка манги для Android</title>
 <meta name="description" content="Hanten — бесплатная читалка манги, манхвы и маньхуа для Android. Десятки источников, загрузки, похожая манга.">
 <link rel="icon" type="image/png" href="/icon.png">
+<script src="/i18n.js"></script>
 <style>
 :root {
   color-scheme: dark;
@@ -27,6 +28,9 @@ nav b { letter-spacing: 3px; font-size: 15px; }
 nav .sp { flex: 1; }
 nav a { color: var(--muted); text-decoration: none; font-size: 14px; margin-left: 18px; }
 nav a:hover { color: var(--text); }
+.lang { display: inline-flex; border: 1px solid #4a5478; border-radius: 999px; overflow: hidden; margin-left: 18px; }
+.lang-btn { background: transparent; border: 0; color: var(--muted); font-size: 12px; padding: 5px 10px; cursor: pointer; }
+.lang-btn.active { background: var(--accent); color: #221016; font-weight: 700; }
 .hero { text-align: center; padding: 48px 0 16px; }
 .hero img.icon {
   width: 128px; height: 128px; border-radius: 30px;
@@ -96,60 +100,61 @@ footer a { color: var(--accent); }
     <img src="/icon.png" alt="Hanten">
     <b>HANTEN</b>
     <span class="sp"></span>
-    <a href="/docs/">Документация</a>
+    <a href="/docs/" data-i18n="nav.docs">Документация</a>
     <a href="https://github.com/DezFix/Hanten">GitHub</a>
+    <span class="lang">
+      <button class="lang-btn" data-lang="ru" onclick="HantenI18n.set('ru')">RU</button>
+      <button class="lang-btn" data-lang="en" onclick="HantenI18n.set('en')">EN</button>
+    </span>
   </nav>
   <div class="hero reveal">
     <img class="icon" src="/icon.png" alt="Иконка Hanten">
     <h1>HANTEN</h1>
-    <p>Бесплатная читалка манги, манхвы и маньхуа для Android</p>
+    <p data-i18n="hero.tag">Бесплатная читалка манги, манхвы и маньхуа для Android</p>
     <div class="badges">
       <span class="badge hot">v2.1.8</span>
-      <span class="badge">1300+ источников</span>
-      <span class="badge">без рекламы</span>
-      <span class="badge">open source</span>
+      <span class="badge" data-i18n="badge.sources">130+ источников</span>
+      <span class="badge" data-i18n="badge.noads">без рекламы</span>
+      <span class="badge" data-i18n="badge.oss">open source</span>
     </div>
-    <a class="btn" href="https://github.com/DezFix/Hanten/releases/latest">Скачать APK</a>
-    <a class="btn ghost" href="/docs/">Документация</a>
+    <a class="btn" href="https://github.com/DezFix/Hanten/releases/latest" data-i18n="btn.dl">Скачать APK</a>
+    <a class="btn ghost" href="/docs/" data-i18n="btn.docs">Документация</a>
   </div>
 
-  <h2 class="section reveal">Быстрый старт</h2>
+  <h2 class="section reveal" data-i18n="start.title">Быстрый старт</h2>
   <div class="steps">
-    <div class="step reveal"><p><a href="https://github.com/DezFix/Hanten/releases/latest">Скачайте APK</a> и разрешите установку из неизвестных источников.</p></div>
-    <div class="step reveal"><p>Откройте каталог и включите любимые источники.</p></div>
-    <div class="step reveal"><p>Читайте! Главы можно сохранять офлайн, а похожую мангу подскажет карусель.</p></div>
+    <div class="step reveal"><p><span data-i18n="start.1a">Скачайте APK из</span> <a href="https://github.com/DezFix/Hanten/releases/latest" data-i18n="start.1b">релизов</a> <span data-i18n="start.1c">и разрешите установку из неизвестных источников.</span></p></div>
+    <div class="step reveal"><p data-i18n="start.2">Откройте каталог и включите любимые источники.</p></div>
+    <div class="step reveal"><p data-i18n="start.3">Читайте! Главы сохраняются офлайн, а похожую мангу подскажет карусель.</p></div>
   </div>
 
-  <h2 class="section reveal">Возможности</h2>
+  <h2 class="section reveal" data-i18n="feat.title">Возможности</h2>
   <div class="grid">
-    <div class="card reveal"><h3><span class="dot">✦</span>Десятки источников</h3><p>ReadManga, MintManga, Remanga, Manhwa и другие — на русском и английском.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Похожая манга</h3><p>На странице тайтла — карусель похожих произведений по жанрам.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Шаринг</h3><p>Делитесь ссылкой — она откроется сразу в приложении у получателя, а в мессенджере покажет обложку.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Загрузки</h3><p>Сохраняйте главы для чтения офлайн.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Без премиума</h3><p>Закрытые платные тайтлы скрываются из каталога автоматически.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Приватность</h3><p>Open source, без рекламы и трекинга. Ваши данные — только ваши.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span><span data-i18n="f1t">130+ источников</span></h3><p data-i18n="f1d"></p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span><span data-i18n="f2t">Похожая манга</span></h3><p data-i18n="f2d"></p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span><span data-i18n="f3t">Умный шаринг</span></h3><p data-i18n="f3d"></p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span><span data-i18n="f4t">Офлайн и категории</span></h3><p data-i18n="f4d"></p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span><span data-i18n="f5t">Ридер под вас</span></h3><p data-i18n="f5d"></p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span><span data-i18n="f6t">Трекинг и защита</span></h3><p data-i18n="f6d"></p></div>
   </div>
 
   <div class="donate reveal">
-    <h2>☕ Поддержать проект</h2>
-    <p>Hanten бесплатен и без рекламы. Если приложение радует — угостите разработчика кофе, это мотивирует пилить новые фичи.</p>
-    <a class="btn kofi" href="https://ko-fi.com/dezfix">Задонатить на Ko-fi</a>
+    <h2 data-i18n="donate.title">Поддержать проект</h2>
+    <p data-i18n="donate.text"></p>
+    <a class="btn kofi" href="https://ko-fi.com/dezfix" data-i18n="donate.btn">Задонатить на Ko-fi</a>
   </div>
 
-  <p class="ack reveal">Hanten — форк <a href="https://github.com/KotatsuApp/Kotatsu">Kotatsu</a> и <a href="https://github.com/AppFuton/Futon">Futon</a>.
-  Спасибо их разработчикам за фундамент. Исходники: <a href="https://github.com/DezFix/Hanten">приложение</a> · <a href="https://github.com/DezFix/hanten-parsers">парсеры</a>.</p>
+  <p class="ack reveal"><span data-i18n="ack"></span><br><span data-i18n="sources"></span> <a href="https://github.com/DezFix/Hanten" data-i18n="app">приложение</a> · <a href="https://github.com/DezFix/hanten-parsers" data-i18n="parsers">парсеры</a>.</p>
 
   <footer class="reveal">
-    <p><a href="https://github.com/DezFix/Hanten">Hanten на GitHub</a> · <a href="https://github.com/DezFix/hanten-parsers">Парсеры</a> · <a href="/docs/">Документация</a></p>
+    <p><a href="https://github.com/DezFix/Hanten">Hanten на GitHub</a> · <a href="https://github.com/DezFix/hanten-parsers">Парсеры</a> · <a href="/docs/" data-i18n="nav.docs">Документация</a></p>
   </footer>
 </div>
 <script>
 (function () {
   var els = document.querySelectorAll(".reveal");
-  if (!("IntersectionObserver" in window)) {
-    els.forEach(function (el) { el.classList.add("visible"); });
-    return;
-  }
+  function showAll() { els.forEach(function (el) { el.classList.add("visible"); }); }
+  if (!("IntersectionObserver" in window)) { showAll(); return; }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }

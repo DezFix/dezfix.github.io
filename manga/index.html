@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hanten — открыть мангу</title>
 <link rel="icon" type="image/png" href="/icon.png">
+<script src="/i18n.js"></script>
 <style>
 :root { color-scheme: dark; --bg: #141824; --card: #20263c; --accent: #e0685c; --text: #f0ebf5; --muted: #a7aec7; }
 * { box-sizing: border-box; }
@@ -38,18 +39,24 @@ h1 { font-size: 22px; margin: 18px 0 6px; }
   <p class="sub" id="source"></p>
   <a class="btn primary" id="openApp" href="#">Открыть в приложении</a>
   <a class="btn secondary" id="openSource" href="#" style="display:none">Читать на сайте источника</a>
-  <a class="btn secondary" href="https://github.com/DezFix/Hanten/releases/latest">Скачать Hanten</a>
-  <p class="note">Нет приложения? Поставьте APK с <a href="https://github.com/DezFix/Hanten/releases/latest">GitHub</a> — ссылка откроется автоматически.</p>
+  <a class="btn secondary dl" id="dlApp" href="https://github.com/DezFix/Hanten/releases/latest">Скачать Hanten</a>
+  <p class="note"><span id="notePre">Нет приложения? Поставьте APK с</span> <a href="https://github.com/DezFix/Hanten/releases/latest">GitHub</a> <span id="notePost">— ссылка откроется автоматически.</span></p>
 </div>
 <script>
 (function () {
+  var T = (window.HantenI18n ? HantenI18n.dict(HantenI18n.lang()) : {});
   var q = new URLSearchParams(location.search);
   var name = q.get("n") || q.get("name") || "";
   var source = q.get("s") || q.get("source") || "";
   var url = q.get("u") || q.get("url") || "";
   var publicUrl = q.get("p") || q.get("publicUrl") || "";
-  if (name) document.getElementById("title").textContent = name;
-  if (source) document.getElementById("source").textContent = "Источник: " + source;
+  document.getElementById("title").textContent = name || T["m.fallback"] || "Hanten";
+  if (source) document.getElementById("source").textContent = (T["m.src"] || "Source:") + " " + source;
+  document.getElementById("openApp").textContent = T["m.open"] || "Open";
+  document.getElementById("openSource").textContent = T["m.source"] || "Source";
+  document.getElementById("dlApp").textContent = T["m.dl"] || "Download";
+  document.getElementById("notePre").textContent = T["m.noapp.pre"] || "";
+  document.getElementById("notePost").textContent = T["m.noapp.post"] || "";
   var appLink = "hanten://manga/manga"
     + "?source=" + encodeURIComponent(source)
     + "&name=" + encodeURIComponent(name)
