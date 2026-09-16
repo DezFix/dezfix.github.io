@@ -44,10 +44,10 @@ h1 { font-size: 22px; margin: 18px 0 6px; }
 <script>
 (function () {
   var q = new URLSearchParams(location.search);
-  var name = q.get("name") || "";
-  var source = q.get("source") || "";
-  var url = q.get("url") || "";
-  var publicUrl = q.get("publicUrl") || "";
+  var name = q.get("n") || q.get("name") || "";
+  var source = q.get("s") || q.get("source") || "";
+  var url = q.get("u") || q.get("url") || "";
+  var publicUrl = q.get("p") || q.get("publicUrl") || "";
   if (name) document.getElementById("title").textContent = name;
   if (source) document.getElementById("source").textContent = "Источник: " + source;
   var appLink = "hanten://manga/manga"

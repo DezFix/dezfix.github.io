@@ -9,7 +9,7 @@
 <style>
 :root {
   color-scheme: dark;
-  --bg: #141824; --card: #20263c; --accent: #e0685c; --cream: #f2e3c9;
+  --bg: #141824; --card: #20263c; --accent: #e0685c; --cream: #f2e3c9; --kofi: #ff5e5b;
   --text: #f0ebf5; --muted: #a7aec7;
 }
 * { box-sizing: border-box; }
@@ -27,7 +27,7 @@ nav b { letter-spacing: 3px; font-size: 15px; }
 nav .sp { flex: 1; }
 nav a { color: var(--muted); text-decoration: none; font-size: 14px; margin-left: 18px; }
 nav a:hover { color: var(--text); }
-.hero { text-align: center; padding: 56px 0 20px; }
+.hero { text-align: center; padding: 48px 0 16px; }
 .hero img.icon {
   width: 128px; height: 128px; border-radius: 30px;
   box-shadow: 0 18px 50px rgba(224,104,92,.35);
@@ -35,18 +35,35 @@ nav a:hover { color: var(--text); }
 }
 @keyframes float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
 .hero h1 { font-size: 46px; margin: 22px 0 8px; letter-spacing: 6px; }
-.hero h1 span { color: var(--accent); }
-.hero p { color: var(--muted); font-size: 18px; margin: 0 0 28px; }
+.hero p { color: var(--muted); font-size: 18px; margin: 0 0 12px; }
+.badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 0 0 22px; }
+.badge { font-size: 13px; color: var(--cream); background: #2a324e; border: 1px solid #3a4568; padding: 5px 14px; border-radius: 999px; }
+.badge.hot { color: #ffd9d4; border-color: var(--accent); }
 .btn { display: inline-block; background: var(--accent); color: #221016; font-weight: 700; padding: 14px 30px; border-radius: 14px; text-decoration: none; margin: 4px 6px; transition: transform .18s ease, box-shadow .18s ease; }
 .btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 28px rgba(224,104,92,.45); }
 .btn.ghost { background: transparent; color: var(--cream); border: 1px solid #4a5478; box-shadow: none; }
 .btn.ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
+.btn.kofi { background: var(--kofi); color: #fff; }
+.btn.kofi:hover { box-shadow: 0 10px 28px rgba(255,94,91,.45); }
+h2.section { font-size: 24px; margin: 52px 0 4px; text-align: center; }
+p.center { text-align: center; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 28px; }
 .card { background: var(--card); border: 1px solid #2c3452; border-radius: 16px; padding: 20px; transition: transform .2s ease, border-color .2s ease; }
 .card:hover { transform: translateY(-4px); border-color: var(--accent); }
 .card h3 { margin: 0 0 8px; font-size: 17px; }
 .card h3 .dot { color: var(--accent); margin-right: 6px; }
 .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 24px; counter-reset: step; }
+.step { background: var(--card); border: 1px solid #2c3452; border-radius: 16px; padding: 20px; position: relative; }
+.step::before { counter-increment: step; content: counter(step); display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #221016; font-weight: 800; margin-bottom: 10px; }
+.step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.step a { color: var(--accent); }
+.donate { text-align: center; background: linear-gradient(180deg, #241d2b, #1c1626); border: 1px solid #4a3040; border-radius: 20px; padding: 36px 24px; margin-top: 28px; }
+.donate h2 { margin: 0 0 8px; font-size: 24px; }
+.donate p { color: var(--muted); margin: 0 0 20px; }
+.ack { color: var(--muted); font-size: 14px; line-height: 1.7; text-align: center; margin-top: 24px; }
+.ack a { color: var(--accent); }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 .petal { position: fixed; top: -4vh; border-radius: 100% 4px 100% 4px; background: rgba(224,120,110,.7); pointer-events: none; z-index: 0;
@@ -86,17 +103,42 @@ footer a { color: var(--accent); }
     <img class="icon" src="/icon.png" alt="Иконка Hanten">
     <h1>HANTEN</h1>
     <p>Бесплатная читалка манги, манхвы и маньхуа для Android</p>
+    <div class="badges">
+      <span class="badge hot">v2.1.8</span>
+      <span class="badge">1300+ источников</span>
+      <span class="badge">без рекламы</span>
+      <span class="badge">open source</span>
+    </div>
     <a class="btn" href="https://github.com/DezFix/Hanten/releases/latest">Скачать APK</a>
     <a class="btn ghost" href="/docs/">Документация</a>
   </div>
+
+  <h2 class="section reveal">Быстрый старт</h2>
+  <div class="steps">
+    <div class="step reveal"><p><a href="https://github.com/DezFix/Hanten/releases/latest">Скачайте APK</a> и разрешите установку из неизвестных источников.</p></div>
+    <div class="step reveal"><p>Откройте каталог и включите любимые источники.</p></div>
+    <div class="step reveal"><p>Читайте! Главы можно сохранять офлайн, а похожую мангу подскажет карусель.</p></div>
+  </div>
+
+  <h2 class="section reveal">Возможности</h2>
   <div class="grid">
     <div class="card reveal"><h3><span class="dot">✦</span>Десятки источников</h3><p>ReadManga, MintManga, Remanga, Manhwa и другие — на русском и английском.</p></div>
     <div class="card reveal"><h3><span class="dot">✦</span>Похожая манга</h3><p>На странице тайтла — карусель похожих произведений по жанрам.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Шаринг</h3><p>Делитесь ссылкой — она откроется сразу в приложении у получателя.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Шаринг</h3><p>Делитесь ссылкой — она откроется сразу в приложении у получателя, а в мессенджере покажет обложку.</p></div>
     <div class="card reveal"><h3><span class="dot">✦</span>Загрузки</h3><p>Сохраняйте главы для чтения офлайн.</p></div>
     <div class="card reveal"><h3><span class="dot">✦</span>Без премиума</h3><p>Закрытые платные тайтлы скрываются из каталога автоматически.</p></div>
-    <div class="card reveal"><h3><span class="dot">✦</span>Открытый код</h3><p>Приложение и парсеры — open source, без рекламы.</p></div>
+    <div class="card reveal"><h3><span class="dot">✦</span>Приватность</h3><p>Open source, без рекламы и трекинга. Ваши данные — только ваши.</p></div>
   </div>
+
+  <div class="donate reveal">
+    <h2>☕ Поддержать проект</h2>
+    <p>Hanten бесплатен и без рекламы. Если приложение радует — угостите разработчика кофе, это мотивирует пилить новые фичи.</p>
+    <a class="btn kofi" href="https://ko-fi.com/dezfix">Задонатить на Ko-fi</a>
+  </div>
+
+  <p class="ack reveal">Hanten — форк <a href="https://github.com/KotatsuApp/Kotatsu">Kotatsu</a> и <a href="https://github.com/AppFuton/Futon">Futon</a>.
+  Спасибо их разработчикам за фундамент. Исходники: <a href="https://github.com/DezFix/Hanten">приложение</a> · <a href="https://github.com/DezFix/hanten-parsers">парсеры</a>.</p>
+
   <footer class="reveal">
     <p><a href="https://github.com/DezFix/Hanten">Hanten на GitHub</a> · <a href="https://github.com/DezFix/hanten-parsers">Парсеры</a> · <a href="/docs/">Документация</a></p>
   </footer>
