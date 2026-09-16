@@ -1,0 +1,1 @@
+[{"relation": ["delegate_permission/common.handle_all_urls"], "target": {"namespace": "android_app", "package_name": "hanten.wre.app", "sha256_cert_fingerprints": ["D3F2AB2D82AFA0AB02D5F6839826847D850B39F80265777DEBDEABE679E3CC67"]}}]

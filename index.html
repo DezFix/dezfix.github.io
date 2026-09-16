@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hanten — читалка манги для Android</title>
+<meta name="description" content="Hanten — бесплатная читалка манги, манхвы и маньхуа для Android. Десятки источников, загрузки, похожая манга.">
+<style>
+:root { color-scheme: dark; --bg: #141118; --card: #1f1a24; --accent: #b388ff; --text: #ece6f0; --muted: #a89fb3; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+.wrap { max-width: 860px; margin: 0 auto; padding: 48px 20px 64px; }
+.hero { text-align: center; padding: 40px 0 24px; }
+.hero h1 { font-size: 44px; margin: 0 0 8px; letter-spacing: 2px; }
+.hero p { color: var(--muted); font-size: 18px; margin: 0 0 28px; }
+.btn { display: inline-block; background: var(--accent); color: #1a1025; font-weight: 700; padding: 14px 28px; border-radius: 12px; text-decoration: none; margin: 4px 6px; }
+.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 36px; }
+.card { background: var(--card); border-radius: 14px; padding: 18px; }
+.card h3 { margin: 0 0 8px; font-size: 17px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 48px; }
+footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>HANTEN</h1>
+    <p>Бесплатная читалка манги, манхвы и маньхуа для Android</p>
+    <a class="btn" href="https://github.com/DezFix/Hanten/releases/latest">Скачать APK</a>
+    <a class="btn ghost" href="/docs/">Документация</a>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Десятки источников</h3><p>ReadManga, MintManga, Remanga, Manhwa и другие — на русском и английском.</p></div>
+    <div class="card"><h3>Похожая манга</h3><p>На странице тайтла — карусель похожих произведений по жанрам.</p></div>
+    <div class="card"><h3>Шаринг</h3><p>Делитесь ссылкой — она откроется сразу в приложении у получателя.</p></div>
+    <div class="card"><h3>Загрузки</h3><p>Сохраняйте главы для чтения офлайн.</p></div>
+    <div class="card"><h3>Без премиума</h3><p>Закрытые платные тайтлы скрываются из каталога автоматически.</p></div>
+    <div class="card"><h3>Открытый код</h3><p>Приложение и парсеры — open source, без рекламы.</p></div>
+  </div>
+  <footer>
+    <p><a href="https://github.com/DezFix/Hanten">Hanten на GitHub</a> · <a href="https://github.com/DezFix/hanten-parsers">Парсеры</a> · <a href="/docs/">Документация</a></p>
+  </footer>
+</div>
+</body>
+</html>
