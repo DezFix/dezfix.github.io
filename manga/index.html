@@ -56,6 +56,7 @@ h1 { font-size: 22px; margin: 18px 0 6px; }
   var url = q.get("u") || q.get("url") || "";
   var publicUrl = q.get("p") || q.get("publicUrl") || "";
   var cover = q.get("c") || q.get("cover") || "";
+  var domain = q.get("d") || "";
   var MIRRORS = {
     COMX: "https://com-x.life",
     READMANGA_RU: "https://readmanga.me",
@@ -89,7 +90,9 @@ h1 { font-size: 22px; margin: 18px 0 6px; }
     + "&url=" + encodeURIComponent(url);
   document.getElementById("openApp").href = appLink;
   document.getElementById("kofiBtn").textContent = T["m.kofi"] || "Ko-fi";
-  var sourceUrl = publicUrl || (MIRRORS[source] && url ? MIRRORS[source] + url : "");
+  var sourceUrl = publicUrl
+    || (domain && url ? "https://" + domain + (url.charAt(0) === "/" ? "" : "/") + url : "")
+    || (MIRRORS[source] && url ? MIRRORS[source] + url : "");
   if (sourceUrl) {
     var src = document.getElementById("openSource");
     src.href = sourceUrl;
