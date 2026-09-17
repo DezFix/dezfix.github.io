@@ -56,7 +56,15 @@ h1 { font-size: 22px; margin: 18px 0 6px; }
   var url = q.get("u") || q.get("url") || "";
   var publicUrl = q.get("p") || q.get("publicUrl") || "";
   var cover = q.get("c") || q.get("cover") || "";
-  var MIRRORS = { COMX: "https://com-x.life" };
+  var MIRRORS = {
+    COMX: "https://com-x.life",
+    READMANGA_RU: "https://readmanga.me",
+    MINTMANGA: "https://2.mintmanga.one",
+    SELFMANGA: "https://1.selfmanga.live",
+    SEIMANGA: "https://1.seimanga.me",
+    ALLHENTAI: "https://20.allhen.online",
+    REMANGA: "https://remanga.org"
+  };
   document.getElementById("title").textContent = name || T["m.fallback"] || "Hanten";
   if (cover) {
     var art = document.getElementById("art");
